@@ -72,7 +72,7 @@ const timeToString = (time) => {
     let hours = lpad(Math.floor(time / HOUR));
     let minutes = lpad(Math.floor((time / MINUTE) % 60));
     let seconds = lpad(Math.floor((time / SECOND) % 60));
-    let milliseconds = mspad(time % SECOND);
+    let milliseconds = mspad(Math.floor(time % SECOND));
 
     hours = hours < 10 ? '0' + hours : hours
     minutes = minutes < 10 ? '0' + minutes : minutes
