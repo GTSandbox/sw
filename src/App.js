@@ -1,25 +1,34 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import StopWatch from './StopWatch';
 
-function App() {
+export default function App() {
+  const [stopwatch, setStopWatch] = useState([]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div>
+      <header>
+        <div className='createmenu'>
+          <button
+            onClick={() => {
+              const newStopWatch = {
+                id: Date.now(),
+              };
+              setStopWatch([...stopwatch, newStopWatch]);
+            }}
+            className='create'
+          >New</button>
+        </div>
       </header>
+      <div>
+        {stopwatch.map((item) => (
+          <StopWatch
+            key={item.id}
+            id={item.id}
+            onDelete={(id) => setStopWatch(stopwatch.filter((item) => item.id !== id))}
+          />
+        ))}
+      </div>
     </div>
   );
 }
-
-export default App;
